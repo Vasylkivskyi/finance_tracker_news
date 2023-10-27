@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.9"
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'iex-ruby-client'
+gem "font-awesome-rails"
