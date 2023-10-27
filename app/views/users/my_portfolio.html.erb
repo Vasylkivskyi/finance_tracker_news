@@ -2,11 +2,11 @@
 <div class="pt-5">
   <h3>Search stocks</h3>
   <%= form_tag search_stock_path, method: :get do %>
-    <div class="form-group d-flex flex-nowrap">
+    <div class="form-group d-flex flex-nowrap w-100">
       <div class="w-100 pr-0">
         <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
       </div>
-      <div class="col-sm-3">
+      <div class="ml-2">
         <%= button_tag type: :submit, class: "btn btn-success" do %>
           <%= fa_icon 'search 2x' %>
         <% end %>
@@ -15,7 +15,7 @@
   <% end %>
 </div>
 <% if @stock %>
-  <div class="card card-header col-sm-9">
+  <div class="card card-header">
     <div class="row">
       <div class="col">
         <strong>Symbol:</strong> <%= @stock.ticker %>
