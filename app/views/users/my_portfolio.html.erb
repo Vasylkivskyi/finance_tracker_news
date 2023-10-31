@@ -25,11 +25,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+    <% @tracked_stocks.each do |stock| %>
+      <tr>
+        <th><%= stock.ticker %></th>
+        <td><%= stock.name %></td>
+        <td><%= stock.last_price %></td>
+        <td></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
