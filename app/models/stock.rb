@@ -8,6 +8,8 @@ class Stock < ApplicationRecord
     begin
       compamy = Alphavantage::Fundamental.new(symbol: ticker_symbol)
       quote = Alphavantage::TimeSeries.new(symbol: ticker_symbol).quote
+      # provide free stock API service covering the majority of our datasets for up to 25 requests per day, returns empty hash after
+      return nil if quote.empty?
       new(ticker: ticker_symbol, name: compamy.overview[:name], last_price: quote[:price])
     rescue => exception
       return nil
