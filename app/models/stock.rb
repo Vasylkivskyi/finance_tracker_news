@@ -6,11 +6,9 @@ class Stock < ApplicationRecord
 
   def self.new_lookup(ticker_symbol)
     begin
-      client = IEX::Api::Client.new(
-        publishable_token: Rails.application.credentials.iex_client[:access_key],
-        endpoint: 'https://cloud.iexapis.com/v1'
-      )
-      new(ticker: ticker_symbol, name: client.company(ticker_symbol).company_name, last_price: client.price(ticker_symbol))
+      compamy = Alphavantage::Fundamental.new(symbol: ticker_symbol)
+      quote = Alphavantage::TimeSeries.new(symbol: ticker_symbol).quote
+      new(ticker: ticker_symbol, name: compamy.overview[:name], last_price: quote[:price])
     rescue => exception
       return nil
     end
