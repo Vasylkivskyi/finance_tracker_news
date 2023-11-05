@@ -1,3 +1,6 @@
+require 'rest-client'
+require 'json'
+
 class Stock < ApplicationRecord
   has_many :user_stocks
   has_many :users, through: :user_stocks
@@ -6,13 +9,26 @@ class Stock < ApplicationRecord
 
   def self.new_lookup(ticker_symbol)
     begin
-      compamy = Alphavantage::Fundamental.new(symbol: ticker_symbol)
-      quote = Alphavantage::TimeSeries.new(symbol: ticker_symbol).quote
-      # provide free stock API service covering the majority of our datasets for up to 25 requests per day, returns empty hash after
-      return nil if quote.empty?
-      new(ticker: ticker_symbol, name: compamy.overview[:name], last_price: quote[:price])
+      stock = get_stock_data(ticker_symbol)
+      return nil if stock.nil?
+      new(ticker: ticker_symbol, name: stock[:name], last_price: stock[:price])
     rescue => exception
       return nil
+    end
+  end
+
+  private
+  def self.get_stock_data(ticker)
+    date = Time.now.strftime("%Y-%d-%m")
+    response = RestClient.get("https://api.polygon.io/v2/aggs/ticker/#{ticker}/range/1/day/#{date}/#{date}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}", {accept: :json})
+    result = JSON.parse(response.body)
+    if result["resultsCount"] == 0
+      return nil
+    else
+      price = result["results"][0]["c"]
+      second_response = RestClient.get("https://api.polygon.io/v3/reference/tickers/#{ticker}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}", {accept: :json})
+      second_result = JSON.parse(second_response.body)
+      { name: second_result["results"]["name"], price: price }
     end
   end
 end
