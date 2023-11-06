@@ -3,7 +3,6 @@ class UserStocksController < ApplicationController
     stock = Stock.check_db(params[:ticker])
     if stock.blank?
       stock = Stock.new_lookup(params[:ticker])
-      pp stock.pretty_inspect
       stock.save
     end
     @user_stock = UserStock.create(user: current_user, stock: stock)

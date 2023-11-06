@@ -12,7 +12,6 @@ class Stock < ApplicationRecord
     begin
       stock = get_stock_data(uppercased_ticker_symbol)
       return nil if stock.nil?
-      pp "works"
       new(ticker: uppercased_ticker_symbol, name: stock[:name], last_price: stock[:price])
     rescue => exception
       return nil
@@ -26,10 +25,11 @@ class Stock < ApplicationRecord
   private
   def self.get_stock_data(ticker)
     time = Date.today
-    time = (time - 2) # checks with 2 days delay because free api plan
+    start_time = (time - 4)
+    end_time = (time - 2) # checks with 2 days delay because free api plan
     date = time.strftime("%Y-%m-%d")
-    pp "https://api.polygon.io/v2/aggs/ticker/#{ticker}/range/1/day/#{date}/#{date}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}"
-    response = RestClient.get("https://api.polygon.io/v2/aggs/ticker/#{ticker}/range/1/day/#{date}/#{date}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}", {accept: :json})
+    # pp "https://api.polygon.io/v2/aggs/ticker/#{ticker}/range/2/day/#{start_time}/#{end_time}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}"
+    response = RestClient.get("https://api.polygon.io/v2/aggs/ticker/#{ticker}/range/1/day/#{start_time}/#{end_time}?apiKey=#{Rails.application.credentials.poligonio[:access_key]}", {accept: :json})
     result = JSON.parse(response.body)
     if result["resultsCount"] == 0
       return nil
