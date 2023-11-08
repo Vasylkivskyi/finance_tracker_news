@@ -2,20 +2,20 @@
 <% if @stock %>
   <div class="card card-header rounded mb-3">
     <div class="row">
-      <div class="col">
-        <strong>Symbol:</strong> <%= @stock.ticker %>
+      <div class="col d-flex align-items-center">
+        <strong class="mr-1">Symbol:</strong><%= @stock.ticker %>
       </div>
       <% if @stock.name %>
-        <div class="col">
-          <strong>Name:</strong> <%= @stock.name %>
+        <div class="col d-flex align-items-center">
+          <strong class="mr-1">Name:</strong><%= @stock.name %>
         </div>
       <% end %>
-      <div class="col">
-        <strong>Price:</strong> <%= @stock.last_price %>
+      <div class="col d-flex align-items-center">
+        <strong class="mr-1">Price:</strong><%= @stock.last_price %>
       </div>
       <% if current_user.can_track_stock?(@stock.ticker) %>
         <div class="col d-flex align-items-center">
-          <%= link_to "Add Stock", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-success", method: :post %>
+          <%= link_to "Add Stock", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-success btn-sm", method: :post %>
         </div>
       <% else %>
         <div class="badge badge-secondary">

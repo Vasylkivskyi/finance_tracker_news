@@ -13,7 +13,7 @@
           <th><%= stock.ticker %></th>
           <td><%= stock.name %></td>
           <td><%= stock.last_price %></td>
-          <td></td>
+          <td class="d-flex justify-content-center border-top-0"><%= link_to "Remove", user_stock_path(stock), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
