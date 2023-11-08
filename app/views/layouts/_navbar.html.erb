@@ -11,25 +11,19 @@
           <li class="nav-item <%= 'active' if request.path == my_portfolio_path %>">
             <%= link_to "My portfolio", my_portfolio_path, class: "nav-link" %>
           </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
+              <%= fa_icon 'user-o', class: "mr-2" %><%= current_user.full_name %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
             </div>
           </li>
-        </ul>
-        <ul class="navbar-nav ml-auto mr-3">
-          <li class="nav-item disabled d-flex align-items-center">
-            <span class="mr-1"><%= fa_icon 'user-o' %></span>
-            <span class="nav-link active pl-0"><%= current_user.full_name %></span>
-          </li>
           <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
