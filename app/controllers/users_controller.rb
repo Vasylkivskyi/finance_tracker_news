@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  def my_portfolio
+  def portfolio
     @tracked_stocks = current_user.stocks
   end
 
