@@ -1,0 +1,17 @@
+<% @friends.each do |friend| %>
+  <div class="card">
+    <% if false %>
+      <img class="card-img-top" src="<% friend.image %>%>" alt="Friend image">
+    <% else %>
+      <img class="card-img-top" src="https://robohash.org/<%= friend.email %>?200x200&set=set4" alt>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= friend.full_name %></h5>
+      <p class="card-text"><%= friend.email %></p>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+<% end %>
