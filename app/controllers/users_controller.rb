@@ -10,8 +10,15 @@ class UsersController < ApplicationController
   def search
     if (params[:friend].present?)
       @friends = User.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:friend]}%").where.not(id: current_user.id)
-      respond_to do |format|
-        format.js { render partial: "friends/result" }
+      if !@friends.empty?
+        respond_to do |format|
+          format.js { render partial: "friends/result" }
+        end
+      else
+        respond_to do |format|
+          flash.now[:notice] = "Users not found"
+          format.js { render partial: "friends/result" }
+        end
       end
     else
       respond_to do |format|

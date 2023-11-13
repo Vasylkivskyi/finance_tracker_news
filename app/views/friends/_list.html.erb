@@ -10,7 +10,7 @@
       <p class="card-text text-center"><%= friend.email %></p>
     </div>
     <div class="card-footer text-center">
-      <%= link_to "Stop following", "#", class: "card-link text-danger", data: { confirm: "Are you sure?" }, method: :delete %>      
+      <%= link_to "Stop following", friendship_path(friend), class: "card-link text-danger", data: { confirm: "Are you sure?" }, method: :delete %>      
     </div>
   </div>
 <% end %>
