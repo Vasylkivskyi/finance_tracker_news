@@ -1,15 +1,15 @@
 <% @friends.each do |friend| %>
-  <div class="card">
+  <div class="card w-75">
     <% if false %>
-      <img class="card-img-top" src="<% friend.image %>%>" alt="Friend image">
+      <img class="card-img-top pt-3 pl-3 pr-3" src="<% friend.image %>%>" alt="Friend image">
     <% else %>
-      <img class="card-img-top" src="https://robohash.org/<%= friend.email %>?200x200&set=set4" alt>
+      <img class="card-img-top pt-3 pl-3 pr-3" src="https://robohash.org/<%= friend.email %>?200x200&set=set4" alt>
     <% end %>
     <div class="card-body">
-      <h5 class="card-title"><%= friend.fullname %></h5>
-      <p class="card-text"><%= friend.email %></p>
+      <h5 class="card-title text-center"><%= friend.fullname %></h5>
+      <p class="card-text text-center"><%= friend.email %></p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer text-center">
       <%= link_to "Stop following", "#", class: "card-link text-danger", data: { confirm: "Are you sure?" }, method: :delete %>      
     </div>
   </div>
