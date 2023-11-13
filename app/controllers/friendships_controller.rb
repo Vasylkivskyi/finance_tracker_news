@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   def create
-    friend = User.where(id: params[:id]).first
+    friend = User.find(params[:friend])
     if (!friend.nil?)
       current_user.friends << friend
       flash[:notice] = "Started following #{friend.fullname}"

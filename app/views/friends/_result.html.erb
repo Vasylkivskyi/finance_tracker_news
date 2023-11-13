@@ -12,7 +12,7 @@
               </div>
               <div class="col">
                 <% if current_user.not_friend?(f.id) %>
-                  <%= link_to "Follow", friendships_path(id: f), class: "btn btn-link", method: :post %>
+                  <%= link_to "Follow", friendships_path(friend: f), class: "btn btn-link", method: :post %>
                 <% else %>
                   <%= link_to "Unfollow", friendship_path(f), class: "btn btn-link text-danger", method: :delete, data: { confirm: "Are you sure?" } %>
                 <% end %>
