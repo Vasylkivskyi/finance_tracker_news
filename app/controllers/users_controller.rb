@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def search
     if (params[:friend].present?)
-      @friends = User.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:friend]}%")
+      @friends = User.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:friend]}%").where.not(id: current_user.id)
       respond_to do |format|
         format.js { render partial: "friends/result" }
       end

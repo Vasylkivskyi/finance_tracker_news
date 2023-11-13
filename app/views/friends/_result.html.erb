@@ -2,7 +2,15 @@
 <% if @friends %>
   <ul class="list-group pb-2">
     <% @friends.each do |f| %>
-      <li class="list-group-item"><%= f.fullname %></li>
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between">
+          <div class="col d-flex align-items-center"><%= f.fullname %></div>
+          <div class="col d-flex justify-content-end">
+            <%= link_to "View", "#", class: "btn btn-link" %>
+            <%= link_to "Follow", "#", class: "btn btn-link" %>
+          </div>
+        </div>
+      </li>
     <% end %>
   </ul>
 <% end %>
