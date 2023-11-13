@@ -26,4 +26,8 @@ class User < ApplicationRecord
     return "#{first_name} #{last_name}" if first_name || last_name
     "Anonymous"
   end
+
+  def not_friend? (friend_id)
+    !self.friends.where(id: friend_id).exists?
+  end
 end
