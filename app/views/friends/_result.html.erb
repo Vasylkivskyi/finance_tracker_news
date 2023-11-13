@@ -1,0 +1,8 @@
+<%= render 'layouts/flash' %>
+<% if @friends %>
+  <ul class="list-group pb-2">
+    <% @friends.each do |f| %>
+      <li class="list-group-item"><%= f.fullname %></li>
+    <% end %>
+  </ul>
+<% end %>

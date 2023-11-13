@@ -8,6 +8,16 @@ class UsersController < ApplicationController
   end
 
   def search
-    render json: params[:friend]
+    if (params[:friend].present?)
+      @friends = User.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:friend]}%")
+      respond_to do |format|
+        format.js { render partial: "friends/result" }
+      end
+    else
+      respond_to do |format|
+        flash.now[:alert] = "Please enter a username to search"
+        format.js { render partial: "friends/result" }
+      end
+    end
   end
 end

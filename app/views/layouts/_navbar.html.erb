@@ -18,7 +18,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= fa_icon 'user-o', class: "mr-2" %><%= current_user.full_name %>
+              <%= fa_icon 'user-o', class: "mr-2" %><%= current_user.fullname %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
