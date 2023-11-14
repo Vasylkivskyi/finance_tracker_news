@@ -8,4 +8,6 @@
 </h1>
 <% if !@tracked_stocks.empty? %>
   <%= render 'stocks/list' %>
+<% else %>
+  <p class="lead">This user isn't tracking any stocks</p>
 <% end %>

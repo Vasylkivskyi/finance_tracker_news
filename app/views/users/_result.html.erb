@@ -15,7 +15,7 @@
       </div>
       <% if current_user.can_track_stock?(@stock.ticker) %>
         <div class="col d-flex align-items-center">
-          <%= link_to "Add Stock", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-success btn-sm", method: :post %>
+          <%= link_to "Add Stock", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-link", method: :post %>
         </div>
       <% else %>
         <div class="badge badge-secondary">
