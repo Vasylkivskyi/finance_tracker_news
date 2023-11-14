@@ -3,13 +3,14 @@
     <% if false %>
       <img class="card-img-top pt-3 pl-3 pr-3" src="<% friend.image %>%>" alt="Friend image">
     <% else %>
-      <img class="card-img-top pt-3 pl-3 pr-3" src="https://robohash.org/<%= friend.email %>?200x200&set=set4" alt>
+      <img class="card-img-top pt-3 pl-3 pr-3" src="https://robohash.org/<%= friend.email %>?200x200&set=set4" alt="Friend image">
     <% end %>
     <div class="card-body">
       <h5 class="card-title text-center"><%= friend.fullname %></h5>
       <p class="card-text text-center"><%= friend.email %></p>
     </div>
     <div class="card-footer text-center">
+      <%= link_to "View", user_path(friend), class: "card-link" %>      
       <%= link_to "Stop following", friendship_path(friend), class: "card-link text-danger", data: { confirm: "Are you sure?" }, method: :delete %>      
     </div>
   </div>

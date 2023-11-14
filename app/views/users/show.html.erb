@@ -1,0 +1,11 @@
+<h1>
+  <% if false %>
+    <img class="img-thumbnail rounded-circle" src="<% @user.image %>%>" alt="Friend image" style="width: 75px;">
+  <% else %>
+    <img class="img-thumbnail rounded-circle" src="https://robohash.org/<%= @user.email %>?200x200&set=set4" alt="Friend image" style="width: 75px;">
+  <% end %>
+  <%= @user.fullname %>
+</h1>
+<% if !@tracked_stocks.empty? %>
+  <%= render 'stocks/list' %>
+<% end %>
