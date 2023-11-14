@@ -1,11 +1,18 @@
-<h1>
-  <% if false %>
-    <img class="img-thumbnail rounded-circle" src="<% @user.image %>%>" alt="Friend image" style="width: 75px;">
+<div class="d-flex align-items-center justify-content-between mb-2">
+  <div class="d-flex align-items-center">
+    <% if false %>
+      <img class="img-thumbnail rounded-circle" src="<% @user.image %>%>" alt="Friend image" style="width: 75px;">
+    <% else %>
+      <img class="img-thumbnail rounded-circle" src="https://robohash.org/<%= @user.email %>?200x200&set=set4" alt="Friend image" style="width: 75px;">
+    <% end %>
+    <h1 class="ml-2"><%= @user.fullname %></h1>
+  </div>
+  <% if current_user.not_friend?(@user.id) %>
+    <%= link_to "Follow", friendships_path(friend: @user), class: "btn btn-primary", method: :post %>
   <% else %>
-    <img class="img-thumbnail rounded-circle" src="https://robohash.org/<%= @user.email %>?200x200&set=set4" alt="Friend image" style="width: 75px;">
+    <%= link_to "Unfollow", friendship_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>
-  <%= @user.fullname %>
-</h1>
+</div>
 <% if !@tracked_stocks.empty? %>
   <%= render 'stocks/list' %>
 <% else %>
